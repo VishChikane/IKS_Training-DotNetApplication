@@ -108,76 +108,97 @@ namespace MovieApp.UI.Controllers
             }
             return View();
         }
-       
-        // POST: UserController
 
-        //// GET: UserController/Details/5
-        //public ActionResult Details(int id)
-        //{
-        //    return View();
-        //}
+        // GET: UserController/EditUser/5
+        public async Task<IActionResult> Edit(int userId)
+        {
+            using (HttpClient client = new HttpClient())
+            {
+                string endPoint = _configuration["WebApiBaseUrl"] + "User/SelectUserById?userId="+userId;
+                using (var response = await client.GetAsync(endPoint))
+                {
+                    if (response.StatusCode == HttpStatusCode.OK)
+                    {
+                        var result = await response.Content.ReadAsStringAsync();
+                        var userModel = JsonConvert.DeserializeObject<UserModel>(result);
+                        return View(userModel);
+                    }
+                }
+            }
+            return View();
+        }
 
-        //// GET: UserController/Create
-        //public ActionResult Create()
-        //{
-        //    return View();
-        //}
+        // POST: UserController/Edit
+        [HttpPost]
+        public async Task<ActionResult> Edit(UserModel updatedUser)
+        {
+            ViewBag.status = "";
+            using (HttpClient client = new HttpClient())
+            {
+                StringContent content = new StringContent(JsonConvert.SerializeObject(updatedUser), Encoding.UTF8, "application/json");
+                string endPoint = _configuration["WebApiBaseUrl"] + "User/UpdateUser";
+                using (var response = await client.PutAsync(endPoint, content))
+                {
+                    if (response.StatusCode == HttpStatusCode.OK)
+                    {
+                        ViewBag.status = "OK";
+                        ViewBag.message = "User Updated Succesfully ...!";
+                        //return RedirectToAction("ShowUserDetails", "User");
+                    }
+                    else
+                    {
+                        ViewBag.status = "Error";
+                        ViewBag.message = "Sorry, User Updated Failed ...!";
+                    }
+                }
+            }
+            return View();
+        }
 
-        //// POST: UserController/Create
-        //[HttpPost]
-        //[ValidateAntiForgeryToken]
-        //public ActionResult Create(IFormCollection collection)
-        //{
-        //    try
-        //    {
-        //        return RedirectToAction(nameof(Index));
-        //    }
-        //    catch
-        //    {
-        //        return View();
-        //    }
-        //}
+        // GET: UserController/DeleteUser/5
+        public async Task<IActionResult> Delete(int userId)
+        {
+            using (HttpClient client = new HttpClient())
+            {
+                string endPoint = _configuration["WebApiBaseUrl"] + "User/SelectUserById?userId=" + userId;
+                using (var response = await client.GetAsync(endPoint))
+                {
+                    if (response.StatusCode == HttpStatusCode.OK)
+                    {
+                        var result = await response.Content.ReadAsStringAsync();
+                        var userModel = JsonConvert.DeserializeObject<UserModel>(result);
+                        return View(userModel);
+                    }
+                }
+            }
+            return View();
+        }
 
-        //// GET: UserController/Edit/5
-        //public ActionResult Edit(int id)
-        //{
-        //    return View();
-        //}
+        // POST: UserController/DeleteUser
+        [HttpPost]
+        public async Task<ActionResult> Delete(UserModel deleteUser)
+        {
+            ViewBag.status = "";
+            using (HttpClient client = new HttpClient())
+            {
+                string endPoint = _configuration["WebApiBaseUrl"] + "User/DeleteUser?userId="+ deleteUser.UserId;
+                using (var response = await client.DeleteAsync(endPoint))
+                {
+                    if (response.StatusCode == HttpStatusCode.OK)
+                    {
+                        ViewBag.status = "OK";
+                        ViewBag.message = "User Deleted Succesfully ...!";
+                        return RedirectToAction("ShowUserDetails", "User");
+                    }
+                    else
+                    {
+                        ViewBag.status = "Error";
+                        ViewBag.message = "Sorry, User Delete Failed ...!";
+                    }
+                }
+            }
+            return View();
+        }
 
-        //// POST: UserController/Edit/5
-        //[HttpPost]
-        //[ValidateAntiForgeryToken]
-        //public ActionResult Edit(int id, IFormCollection collection)
-        //{
-        //    try
-        //    {
-        //        return RedirectToAction(nameof(Index));
-        //    }
-        //    catch
-        //    {
-        //        return View();
-        //    }
-        //}
-
-        //// GET: UserController/Delete/5
-        //public ActionResult Delete(int id)
-        //{
-        //    return View();
-        //}
-
-        //// POST: UserController/Delete/5
-        //[HttpPost]
-        //[ValidateAntiForgeryToken]
-        //public ActionResult Delete(int id, IFormCollection collection)
-        //{
-        //    try
-        //    {
-        //        return RedirectToAction(nameof(Index));
-        //    }
-        //    catch
-        //    {
-        //        return View();
-        //    }
-        //}
     }
 }

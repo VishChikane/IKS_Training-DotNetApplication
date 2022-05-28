@@ -39,5 +39,9 @@ namespace MovieApp.Business.Services
             return _itheatre.DeleteTheatre(theatreId);
         }
 
+        public object SelectTheatreById(int theatreId)
+        {
+            return _itheatre.SelectTheatreById(theatreId);
+        }
     }
 }

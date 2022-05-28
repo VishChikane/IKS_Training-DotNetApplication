@@ -12,5 +12,6 @@ namespace MovieApp.Data.Repositiories
         string Update(UserModel userModel);
         string Delete(int userId);
         object SelectUsers();
+        object SelectUserById(int userId);
     }
 }

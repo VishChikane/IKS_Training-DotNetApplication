@@ -38,5 +38,10 @@ namespace SampleApp.Business.Services
         {
             return _teacherRepo.DeleteTeacher(teacherId);
         }
+
+        public object SelectTeacherById(int teacherId)
+        {
+            return _teacherRepo.SelectTeacherById(teacherId);
+        }
     }
 }

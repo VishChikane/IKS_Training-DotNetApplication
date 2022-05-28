@@ -11,6 +11,6 @@ namespace MovieApp.Data.Repositiories
         string AddMovie(MovieModel movieModel);
         string UpdateMovie(MovieModel movieModel);
         string DeleteMovie(int movieId);
-        //MovieModel GetMovieById(int movieId);
+        object SelectMovieById(int movieId);
     }
 }

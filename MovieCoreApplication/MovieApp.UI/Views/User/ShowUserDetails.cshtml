@@ -6,6 +6,9 @@
 
 <h1>ShowUserDetails</h1>
 <hr />
+<a asp-controller="User" asp-action="Login">Login</a> |
+<a asp-controller="User" asp-action="Register">Register</a>
+<hr />
 
 <table class="table table-bordered">
     <thead>
@@ -16,19 +19,39 @@
             <th>Email
             <th>Password
             <th>Mobile
+            <th>Edit
+            <th>Delete
         </tr>
     </thead>
     <tbody>
-        @foreach(var item in Model)
+        @foreach (var item in Model)
         {
-        <tr>
-            <td>@item.UserId</td>
-            <td>@item.FirstName</td>
-            <td>@item.LastName</td>
-            <td>@item.Email</td>
-            <td>@item.Password</td>
-            <td>@item.Mobile</td>
-        </tr>
+            <tr>
+                <td>@item.UserId</td>
+                <td>@item.FirstName</td>
+                <td>@item.LastName</td>
+                <td>@item.Email</td>
+                <td>@item.Password</td>
+                <td>@item.Mobile</td>
+                <td><a asp-controller="User" asp-action="Edit" asp-route-UserId=@item.UserId>Edit</a></td>
+                <td><a asp-controller="User" asp-action="Delete" asp-route-UserId=@item.UserId>Delete</a></td>
+            </tr>
         }
     </tbody>
 </table>
+<hr />
+@if (ViewBag.status == "OK")
+{
+    <div class="alert alert-success">
+        @ViewBag.message
+    </div>
+}
+else if (ViewBag.status == "Error")
+{
+    <div class="alert alert-danger">
+        @ViewBag.message
+    </div>
+}
+<hr />
+<a asp-controller="User" asp-action="Register">Register New User</a>
+<hr />

@@ -57,11 +57,11 @@ namespace MovieApp.Data.Repositiories
             return msg;
         }
 
-        // Get Movie By Id
-        //public MovieModel GetMovieById(int movieId)
-        //{
-        //    return _movieDbContext.movieModel.Find(movieId);
-        //}
+        // Select Movie By Id
+        public object SelectMovieById(int movieId)
+        {
+            return _movieDbContext.movieModel.Find(movieId);
+        }
 
 
     }

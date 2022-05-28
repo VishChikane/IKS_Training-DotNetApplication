@@ -50,5 +50,9 @@ namespace SampleApp.Data.Repositories  // Repositiories
             return "Deleted Teacher Successfully ..!";
         }
 
+        public object SelectTeacherById(int teacherId)
+        {
+            return _sampleDbContext.teacherModel.Find(teacherId);
+        }
     }
 }

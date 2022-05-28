@@ -39,10 +39,11 @@ namespace MovieApp.Business.Services
             return _imovie.DeleteMovie(movieId);
         }
 
-        // Get Movie By Id
-        //public void GetMovieById(int movieId)
-        //{
-        //    _imovie.GetMovieById(movieId);
-        //}
+        // Select Movie By Id
+        public object SelectMovieById(int movieId)
+        {
+           return _imovie.SelectMovieById(movieId);
+        }
+
     }
 }

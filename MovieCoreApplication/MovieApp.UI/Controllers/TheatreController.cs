@@ -24,12 +24,12 @@ namespace MovieApp.UI.Controllers
         // GET : TheatreController
         public async Task<IActionResult> ShowTheatreDetails()
         {
-            using(HttpClient client = new HttpClient())
+            using (HttpClient client = new HttpClient())
             {
                 var endPoint = _configuration["WebApiBaseUrl"] + "Theatre/SelectTheatre";
-                using(var response = await client.GetAsync(endPoint))
+                using (var response = await client.GetAsync(endPoint))
                 {
-                    if(response.StatusCode == HttpStatusCode.OK)
+                    if (response.StatusCode == HttpStatusCode.OK)
                     {
                         var result = await response.Content.ReadAsStringAsync();
                         var theatreModel = JsonConvert.DeserializeObject<List<TheatreModel>>(result);
@@ -56,9 +56,9 @@ namespace MovieApp.UI.Controllers
             {
                 StringContent content = new StringContent(JsonConvert.SerializeObject(theatre), Encoding.UTF8, "application/json");
                 var endPoint = _configuration["WebApiBaseUrl"] + "Theatre/AddTheatre";
-                using(var response = await client.PostAsync(endPoint, content))
+                using (var response = await client.PostAsync(endPoint, content))
                 {
-                    if(response.StatusCode == HttpStatusCode.OK)
+                    if (response.StatusCode == HttpStatusCode.OK)
                     {
                         ViewBag.status = "OK";
                         ViewBag.message = "Theatre Added Succesfully ...!";
@@ -73,6 +73,92 @@ namespace MovieApp.UI.Controllers
             return View();
         }
 
+        // GET : TheatreController/Edit
+        public async Task<IActionResult> Edit(int theatreId)
+        {
+            using (HttpClient client = new HttpClient())
+            {
+                var endPoint = _configuration["WebApiBaseUrl"] + "Theatre/SelectTheatreById?theatreId=" + theatreId;
+                using (var response = await client.GetAsync(endPoint))
+                {
+                    if (response.StatusCode == HttpStatusCode.OK)
+                    {
+                        var result = await response.Content.ReadAsStringAsync();
+                        var theatreModel = JsonConvert.DeserializeObject<TheatreModel>(result);
+                        return View(theatreModel);
+                    }
+                }
+            }
+            return View();
+        }
 
+        // POST : TheatreController/Edit
+        [HttpPost]
+        public async Task<IActionResult> Edit(TheatreModel updateTheatre)
+        {
+            ViewBag.status = "";
+            using (HttpClient client = new HttpClient())
+            {
+                StringContent content = new StringContent(JsonConvert.SerializeObject(updateTheatre), Encoding.UTF8, "application/json");
+                string endPoint = _configuration["WebApiBaseUrl"] + "Theatre/UpdateTheatre";
+                using (var response = await client.PutAsync(endPoint, content))
+                {
+                    if (response.StatusCode == HttpStatusCode.OK)
+                    {
+                        ViewBag.status = "OK";
+                        ViewBag.message = "Theatre Updated Succesfully ...!";
+                        return RedirectToAction("ShowTheatreDetails", "Theatre");
+                    }
+                    else
+                    {
+                        ViewBag.status = "Error";
+                        ViewBag.message = "Sorry, Theatre Updated Failed ...!";
+                    }
+                }
+            }
+            return View();
+        }
+
+        // GET : TheatreController/Delete
+        public async Task<IActionResult> Delete(int theatreId)
+        {
+            using (HttpClient client = new HttpClient())
+            {
+                var endPoint = _configuration["WebApiBaseUrl"] + "Theatre/SelectTheatreById?theatreId=" + theatreId;
+                using (var response = await client.GetAsync(endPoint))
+                {
+                    if (response.StatusCode == HttpStatusCode.OK)
+                    {
+                        var result = await response.Content.ReadAsStringAsync();
+                        var theatreModel = JsonConvert.DeserializeObject<TheatreModel>(result);
+                        return View(theatreModel);
+                    }
+                }
+            }
+            return View();
+        }
+
+        // POST : TheatreController/Delete
+        [HttpPost]
+        public async Task<IActionResult> Delete(TheatreModel deleteTheatre)
+        {
+            using (HttpClient client = new HttpClient())
+            {
+                var endPoint = _configuration["WebApiBaseUrl"] + "Theatre/DeleteTheatre?theatreId=" + deleteTheatre.ThreatreId;
+                using (var response = await client.DeleteAsync(endPoint))
+                {
+                    if (response.StatusCode == HttpStatusCode.OK)
+                    {
+                        return RedirectToAction("ShowTheatreDetails", "Theatre");
+                    }
+                    else
+                    {
+                        ViewBag.status("Error");
+                        ViewBag.message("Theatre Delete Failed ...!");
+                    }
+                }
+            }
+            return View();
+        }
     }
 }

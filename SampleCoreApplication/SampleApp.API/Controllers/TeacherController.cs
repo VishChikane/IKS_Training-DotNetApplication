@@ -35,7 +35,7 @@ namespace SampleApp.API.Controllers
         }
 
         // Update Teacher
-        [HttpPost("UpdateTeacher")]
+        [HttpPut("UpdateTeacher")]
         public IActionResult UpdateTeacher(Teacher teacher)
         {
             return Ok(_teacherService.UpdateTeacher(teacher));
@@ -46,6 +46,13 @@ namespace SampleApp.API.Controllers
         public IActionResult DeleteTeacher(int id)
         {
             return Ok(_teacherService.DeleteTeacher(id));
+        }
+
+        // Select Tecaher By Id
+        [HttpGet("SelectTeacherById")]
+        public IActionResult SelectTeacherById(int id)
+        {
+            return Ok(_teacherService.SelectTeacherById(id));
         }
     }
 }

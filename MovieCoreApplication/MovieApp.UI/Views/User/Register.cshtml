@@ -30,7 +30,7 @@
     </div>
     <div>
         <input type="submit" class="btn btn-primary" value="Register" />
-        <input type="reset" class="btn btn-secondary" value="Reset" />
+        <input type="reset" class="btn btn-secondary" value="Reset Form" />
     </div>
     <hr />
     @if (ViewBag.status == "OK")
@@ -46,5 +46,7 @@
         </div>
     }
     <hr />
-    @*<a asp-controller="User" asp-action="Login">Login</a>*@
+    <a asp-controller="User" asp-action="Login">Login</a>  |
+    <a asp-controller="User" asp-action="ShowUserDetails">Show User Details</a>
+    <hr />
 </form>

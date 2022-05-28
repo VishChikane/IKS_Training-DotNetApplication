@@ -69,11 +69,10 @@ namespace MovieApp.Data.Repositiories
             return msg;
         }
 
-        // Get User By Id
-        //public UserModel GetUserById(int userId)
-        //{
-        //    return _movieDbContext.userModel.Find(userId);
-        //}
+        public object SelectUserById(int userId)
+        {
+            return _movieDbContext.userModel.Find(userId);
+        }
 
     }
 }

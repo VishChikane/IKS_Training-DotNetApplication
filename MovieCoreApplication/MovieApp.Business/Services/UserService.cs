@@ -43,5 +43,10 @@ namespace MovieApp.Business.Services
         {
             return _iuser.Delete(userId);
         }
+
+        public object SelectUserById(int userId)
+        {
+            return _iuser.SelectUserById(userId);
+        }
     }
 }

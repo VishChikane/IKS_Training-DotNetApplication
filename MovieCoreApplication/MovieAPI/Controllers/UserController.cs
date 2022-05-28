@@ -50,9 +50,16 @@ namespace MovieAPI.Controllers
 
         // Delete User
         [HttpDelete("DeleteUser")]
-        public IActionResult DeleteUser(int id)
+        public IActionResult DeleteUser(int userId)
         {
-            return Ok(_userService.Delete(id));
+            return Ok(_userService.Delete(userId));
+        }
+
+        // Get User By ID
+        [HttpGet("SelectUserById")]
+        public IActionResult SelectUserById(int userId)
+        {
+            return Ok(_userService.SelectUserById(userId));
         }
 
     }

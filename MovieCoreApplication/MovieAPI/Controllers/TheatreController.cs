@@ -44,5 +44,13 @@ namespace MovieAPI.Controllers
             return Ok(_theatreService.DeleteTheatre(theatreId));
         }
 
+        // Select Theatre By Id 
+        [HttpGet("SelectTheatreById")]
+        public IActionResult SelectTheatreById(int theatreId)
+        {
+            return Ok(_theatreService.SelectTheatreById(theatreId));
+        }
+
+
     }
 }

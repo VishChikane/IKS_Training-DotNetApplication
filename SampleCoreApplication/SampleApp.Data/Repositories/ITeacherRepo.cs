@@ -11,5 +11,6 @@ namespace SampleApp.Data.Repositories
         String AddTeacher(Teacher teacher);
         string UpdateTeacher(Teacher teacher);
         string DeleteTeacher(int teacherId);
+        object SelectTeacherById(int teacherId);
     }
 }

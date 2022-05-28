@@ -50,5 +50,10 @@ namespace MovieApp.Data.Repositiories
             return "Delected Theatre";
         }
 
+        // Select Theatre By Id
+        public object SelectTheatreById(int theatreId)
+        {
+            return _movieDbContext.theatreModel.Find(theatreId);
+        }
     }
 }

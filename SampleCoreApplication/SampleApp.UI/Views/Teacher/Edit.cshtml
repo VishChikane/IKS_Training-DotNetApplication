@@ -1,0 +1,42 @@
+﻿@model SampleApp.Entity.Models.Teacher;
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h1>Edit Teacher</h1>
+<hr />
+
+<form method="post">
+    <div class="form-group">
+        <label for="Id">Teacher Id</label>
+        <input type="text" class="form-control" asp-for="Id" readonly/>
+    </div>
+    <div class="form-group">
+        <label for="Name">Name</label>
+        <input type="text" class="form-control" asp-for="Name" />
+    </div>
+    <div class="form-group">
+        <label for="Skills">Skills</label>
+        <input type="text" class="form-control" asp-for="Skills" />
+    </div>
+    <div class="form-group">
+        <label for="TotalStudents">Total Students</label>
+        <input type="text" class="form-control" asp-for="TotalStudents" />
+    </div>
+    <div class="form-group">
+        <label for="Salary">Salary</label>
+        <input type="text" class="form-control" asp-for="Salary" />
+    </div>
+    <div>
+        <input type="submit" class="btn btn-primary" value="Update Teacher" />
+    </div>
+    <hr />
+    @if (ViewBag.status == "OK")
+    {
+        <div class="alert alert-success">@ViewBag.message</div>
+    }
+    else if (ViewBag.status == "Error")
+    {
+        <div class="alert alert-danger">@ViewBag.message</div>
+    }
+</form>

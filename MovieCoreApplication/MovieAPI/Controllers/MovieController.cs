@@ -8,11 +8,11 @@ namespace MovieAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class MoviesController : ControllerBase
+    public class MovieController : ControllerBase
     {
         MovieService _movieService;
 
-        public MoviesController(MovieService movieService)
+        public MovieController(MovieService movieService)
         {
             _movieService = movieService;
         }
@@ -46,12 +46,12 @@ namespace MovieAPI.Controllers
             return Ok(_movieService.DeleteMovie(movieId));
         }
 
-        //// Get Movie By Id
-        //// [HttpDelete("GetMovieById")]
-        //public IActionResult GetMovieById(int movieId)
-        //{
-        //    return Ok(_movieService.GetMovieById(movieId));
-        //}
+        // Get Movie By Id
+        [HttpGet("SelectMovieById")]
+        public IActionResult SelectMovieById(int movieId)
+        {
+            return Ok(_movieService.SelectMovieById(movieId));
+        }
 
 
     }

@@ -15,7 +15,6 @@ E:\IKS_Training\DotNetApplication\SampleCoreApplication\SampleApp.Entity\bin\Deb
 E:\IKS_Training\DotNetApplication\SampleCoreApplication\SampleApp.Entity\bin\Debug\netcoreapp3.1\SampleApp.Entity.runtimeconfig.dev.json
 E:\IKS_Training\DotNetApplication\SampleCoreApplication\SampleApp.Entity\bin\Debug\netcoreapp3.1\SampleApp.Entity.dll
 E:\IKS_Training\DotNetApplication\SampleCoreApplication\SampleApp.Entity\bin\Debug\netcoreapp3.1\SampleApp.Entity.pdb
-E:\IKS_Training\DotNetApplication\SampleCoreApplication\SampleApp.Entity\obj\Debug\netcoreapp3.1\SampleApp.Entity.csproj.AssemblyReference.cache
 E:\IKS_Training\DotNetApplication\SampleCoreApplication\SampleApp.Entity\obj\Debug\netcoreapp3.1\SampleApp.Entity.GeneratedMSBuildEditorConfig.editorconfig
 E:\IKS_Training\DotNetApplication\SampleCoreApplication\SampleApp.Entity\obj\Debug\netcoreapp3.1\SampleApp.Entity.AssemblyInfoInputs.cache
 E:\IKS_Training\DotNetApplication\SampleCoreApplication\SampleApp.Entity\obj\Debug\netcoreapp3.1\SampleApp.Entity.AssemblyInfo.cs

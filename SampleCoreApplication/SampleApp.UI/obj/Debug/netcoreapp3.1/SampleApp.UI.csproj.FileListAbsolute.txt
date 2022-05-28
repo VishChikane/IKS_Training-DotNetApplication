@@ -340,3 +340,5 @@ E:\IKS_Training\DotNetApplication\SampleCoreApplication\SampleApp.UI\obj\Debug\n
 E:\IKS_Training\DotNetApplication\SampleCoreApplication\SampleApp.UI\obj\Debug\netcoreapp3.1\SampleApp.UI.dll
 E:\IKS_Training\DotNetApplication\SampleCoreApplication\SampleApp.UI\obj\Debug\netcoreapp3.1\SampleApp.UI.pdb
 E:\IKS_Training\DotNetApplication\SampleCoreApplication\SampleApp.UI\obj\Debug\netcoreapp3.1\SampleApp.UI.genruntimeconfig.cache
+E:\IKS_Training\DotNetApplication\SampleCoreApplication\SampleApp.UI\obj\Debug\netcoreapp3.1\Razor\Views\Teacher\Edit.cshtml.g.cs
+E:\IKS_Training\DotNetApplication\SampleCoreApplication\SampleApp.UI\obj\Debug\netcoreapp3.1\Razor\Views\Teacher\Delete.cshtml.g.cs
