@@ -1,0 +1,36 @@
+﻿@model IEnumerable<MovieApp.Entity.BookingModel>
+@{
+    ViewData["Title"] = "BookingList";
+}
+
+<h1>BookingList</h1>
+<hr />
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>BookingId</th>
+            <th>UserId</th>
+            <th>MovieId</th>
+            <th>TheatreId</th>
+            <th>ShowTime</th>
+            <th>Date</th>
+            <th>TicketCount</th>
+            <th>delete</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.BookingId</td>
+                <td>@item.UserId</td>
+                <td>@item.MovieId</td>
+                <td>@item.TheatreId</td>
+                <td>@item.ShowTime</td>
+                <td>@item.Date</td>
+                <td>@item.TicketCount</td>
+                <td><a asp-controller="BookingUI" asp-action="Delete" asp-route-BookingId=@item.BookingId>Delete</a></td>
+            </tr>
+        }
+    </tbody>
+</table>

@@ -44,9 +44,11 @@ namespace MovieApp.UI.Controllers
             return View();
         }
 
-        // GET: UserController/Register
+        // GET: UserController/RegisterUser
         public IActionResult Register()
         {
+            //if (ModelState.IsValid)
+           
             return View();
         }
 
@@ -55,21 +57,21 @@ namespace MovieApp.UI.Controllers
         public async Task<IActionResult> Register(UserModel user)
         {
             ViewBag.status = "";
-            using(HttpClient client = new HttpClient())
+            using (HttpClient client = new HttpClient())
             {
                 StringContent content = new StringContent(JsonConvert.SerializeObject(user), Encoding.UTF8, "application/json");
-                string endPoint = _configuration["WebApiBaseUrl"] + "User/Register";
-                using(var response = await client.PostAsync(endPoint, content))
+                string endPoint = _configuration["WebApiBaseUrl"] + "User/RegisterUser";
+                using (var response = await client.PostAsync(endPoint, content))
                 {
-                    if(response.StatusCode == System.Net.HttpStatusCode.OK)
+                    if (response.StatusCode == HttpStatusCode.OK)
                     {
                         ViewBag.status = "OK";
                         ViewBag.message = "User Register Succesfully ...!";
                     }
                     else
-                    {ViewBag.status = "Error";
+                    {
+                        ViewBag.status = "Error";
                         ViewBag.message = "Sorry, User Register Failed ...!";
-                        
                     }
                 }
             }
@@ -87,13 +89,13 @@ namespace MovieApp.UI.Controllers
         public async Task<IActionResult> Login(UserModel user)
         {
             ViewBag.status = "";
-            using(HttpClient client = new HttpClient())
+            using (HttpClient client = new HttpClient())
             {
                 StringContent content = new StringContent(JsonConvert.SerializeObject(user), Encoding.UTF8, "application/json");
                 string endPoint = _configuration["WebApiBaseUrl"] + "User/Login";
                 using (var response = await client.PostAsync(endPoint, content))
                 {
-                    if (response.StatusCode == System.Net.HttpStatusCode.OK) 
+                    if (response.StatusCode == System.Net.HttpStatusCode.OK)
                     {
                         ViewBag.status = "OK";
                         ViewBag.message = "User Register Succesfully ...!";
@@ -114,7 +116,7 @@ namespace MovieApp.UI.Controllers
         {
             using (HttpClient client = new HttpClient())
             {
-                string endPoint = _configuration["WebApiBaseUrl"] + "User/SelectUserById?userId="+userId;
+                string endPoint = _configuration["WebApiBaseUrl"] + "User/SelectUserById?userId=" + userId;
                 using (var response = await client.GetAsync(endPoint))
                 {
                     if (response.StatusCode == HttpStatusCode.OK)
@@ -181,7 +183,7 @@ namespace MovieApp.UI.Controllers
             ViewBag.status = "";
             using (HttpClient client = new HttpClient())
             {
-                string endPoint = _configuration["WebApiBaseUrl"] + "User/DeleteUser?userId="+ deleteUser.UserId;
+                string endPoint = _configuration["WebApiBaseUrl"] + "User/DeleteUser?userId=" + deleteUser.UserId;
                 using (var response = await client.DeleteAsync(endPoint))
                 {
                     if (response.StatusCode == HttpStatusCode.OK)

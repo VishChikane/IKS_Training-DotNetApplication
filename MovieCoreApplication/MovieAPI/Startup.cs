@@ -39,6 +39,8 @@ namespace MovieAPI
             services.AddTransient<TheatreService, TheatreService>();
             services.AddTransient<IShowTime, ShowTime>();
             services.AddTransient<ShowTimeService, ShowTimeService>();
+            services.AddTransient<IBooking, Booking>();
+            services.AddTransient<BookingService, BookingService>();
             services.AddControllers();
             services.AddSwaggerGen();
         }

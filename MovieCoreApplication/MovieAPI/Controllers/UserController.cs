@@ -28,8 +28,8 @@ namespace MovieAPI.Controllers
         }
 
         // Register User
-        [HttpPost("Register")]
-        public IActionResult Register(UserModel userModel)
+        [HttpPost("RegisterUser")]
+        public IActionResult RegisterUser(UserModel userModel)
         {
             return Ok(_userService.Register(userModel));
         }

@@ -111,7 +111,7 @@ namespace MovieApp.UI.Controllers
             using(HttpClient client = new HttpClient())
             {
                 StringContent content = new StringContent(JsonConvert.SerializeObject(movieShowTime), Encoding.UTF8, "application/json");
-                string endPoint = _configuration["WebApiBaseUrl"] + "ShowTime/InsertMovieShowTime";
+                string endPoint = _configuration["WebApiBaseUrl"] + "ShowTime/AddMovieShowTime";
                 using(var response = await client.PostAsync(endPoint, content))
                 {
                     if (response.StatusCode == HttpStatusCode.OK)
@@ -132,3 +132,6 @@ namespace MovieApp.UI.Controllers
 
     }
 }
+
+
+

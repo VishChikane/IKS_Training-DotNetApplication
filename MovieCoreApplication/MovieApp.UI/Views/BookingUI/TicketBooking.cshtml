@@ -1,0 +1,53 @@
+﻿@model MovieApp.Entity.BookingModel
+@{
+    ViewData["Title"] = "TicketBooking";
+}
+
+<h1>TicketBooking</h1>
+<hr />
+<form method="post">
+
+    <div class="form-group">
+        <label for="MovieId">Movie </label>
+        <select asp-for="MovieId" asp-items="@(new SelectList(ViewBag.showSelectedMovie, "Value","Text"))" class="form-control"></select>
+    </div>
+
+    <div class="form-group">
+        <label for="TheatreId">Theatre</label>
+        <select asp-for="TheatreId" asp-items="@(new SelectList(ViewBag.showShowTheatreList,"Value","Text"))" class="form-control"></select>
+    </div>
+
+    <div class="form-group">
+        <label for="ShowTime">ShowTime</label>
+        <select asp-for="ShowTime" asp-items="@(new SelectList(ViewBag.showTimeShowList,"Value","Text"))" class="form-control"></select>
+    </div>
+    <div class="form-group">
+        <label for="Date">Date</label>
+        <select asp-for="Date" asp-items="@(new SelectList(ViewBag.dateShowList,"Value","Text"))" class="form-control"></select>
+    </div>
+
+    <div class="form-group">
+        <label for="UserId">User Name </label>
+        <select asp-for="UserId" asp-items="@(new SelectList(ViewBag.userShowList,"Value","Text"))" class="form-control"></select>
+    </div>
+
+    <div class="form-group">
+        <label for="TicketCount">Ticket Count </label>
+        <select asp-for="TicketCount" asp-items="@(new SelectList(ViewBag.ticketCountShowList,"Value","Text"))" class="form-control"></select>
+    </div>
+
+    <input type="submit" value="Book" class="btn btn-primary" />
+    <input type="button" value="Reset" class="btn btn-secondary" />
+</form>
+<hr />
+@if (ViewBag.status == "OK")
+{
+    <div class="alert alert-success">@ViewBag.message</div>
+}
+else if (ViewBag.status == "Error")
+{
+    <div class="alert alert-danger">@ViewBag.message</div>
+}
+<hr />
+<a asp-action="BookingList" asp-controller="Booking">Show Booking Details</a>
+<hr />

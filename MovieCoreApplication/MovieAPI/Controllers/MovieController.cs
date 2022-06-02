@@ -25,8 +25,8 @@ namespace MovieAPI.Controllers
         }
 
         // Add New Movie
-        [HttpPost("AddMovie")]
-        public IActionResult AddMovie(MovieModel movieModel)
+        [HttpPost("AddNewMovie")]
+        public IActionResult AddNewMovie(MovieModel movieModel)
         {
             return Ok(_movieService.AddMovie(movieModel));
 

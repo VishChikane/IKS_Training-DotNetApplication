@@ -54,7 +54,7 @@ namespace MovieApp.UI.Controllers
             {
                 ViewBag.status = "";
                 StringContent content = new StringContent(JsonConvert.SerializeObject(movie), Encoding.UTF8, "application/json");
-                string endPoint = _configuration["WebApiBaseUrl"] + "Movie/AddMovie";
+                string endPoint = _configuration["WebApiBaseUrl"] + "Movie/AddNewMovie";
                 using (var response = await client.PostAsync(endPoint, content))
                 {
                     if (response.StatusCode == System.Net.HttpStatusCode.OK)
@@ -78,7 +78,7 @@ namespace MovieApp.UI.Controllers
         {
             using (HttpClient client = new HttpClient())
             {
-                string endPoint = _configuration["WebApiBaseUrl"] + "Movie/SelectMovieById?movieId="+movieId;
+                string endPoint = _configuration["WebApiBaseUrl"] + "Movie/SelectMovieById?movieId=" + movieId;
                 using (var response = await client.GetAsync(endPoint))
                 {
                     if (response.StatusCode == HttpStatusCode.OK)
@@ -143,7 +143,7 @@ namespace MovieApp.UI.Controllers
         {
             using (HttpClient client = new HttpClient())
             {
-                string endPoint = _configuration["WebApiBaseUrl"] + "Movie/DeleteMovie?movieId="+deleteMovie.MovieId;
+                string endPoint = _configuration["WebApiBaseUrl"] + "Movie/DeleteMovie?movieId=" + deleteMovie.MovieId;
                 using (var response = await client.DeleteAsync(endPoint))
                 {
                     if (response.StatusCode == HttpStatusCode.OK)

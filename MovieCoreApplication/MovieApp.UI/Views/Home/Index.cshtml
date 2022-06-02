@@ -1,8 +1,26 @@
-﻿@{
+﻿@model IEnumerable<MovieApp.Entity.MovieModel>
+@{
     ViewData["Title"] = "Home Page";
 }
 
 <div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+    <h3 class="display-4">Welcome BookYourShow App</h3>
+    <hr />
+</div>
+<div class="row">
+    @foreach(var item in Model)
+    {
+        <div class="col-md-4 p-2">
+            <div class="card" style="width: 20rem;">
+                <img class="card-img-top" src="https://cdn.wallpapersafari.com/87/59/9TUt2O.jpg" alt="Card image cap">
+                <div class="card-body">
+                    <h5 class="card-title">@item.MovieName</h5>
+                    <p class="card-text">@item.ActorName, @item.ActressName, @item.DirectorName</p>
+                    <a class="btn btn-primary" asp-controller="BookingUI" asp-action="TicketBooking" asp-route-MovieId=@item.MovieId>Book Now</a>
+                </div>
+            </div>
+        </div>
+    }
+    <div class="col-md-12" style="height:10px"></div>
+   
 </div>

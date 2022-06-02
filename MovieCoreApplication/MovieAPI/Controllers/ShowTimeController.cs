@@ -26,8 +26,8 @@ namespace MovieAPI.Controllers
             return Ok(_showTimeService.ShowMovieShowTime());
         }
 
-        [HttpPost("InsertMovieShowTime")]
-        public IActionResult InsertMovieShowTime(MovieShowTime movieShow)
+        [HttpPost("AddMovieShowTime")]
+        public IActionResult AddMovieShowTime(MovieShowTime movieShow)
         {
             return Ok(_showTimeService.InsertMovieShowTime(movieShow));
         }

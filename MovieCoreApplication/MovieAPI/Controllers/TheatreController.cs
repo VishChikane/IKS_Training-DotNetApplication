@@ -24,8 +24,8 @@ namespace MovieAPI.Controllers
         }
 
         // Add New theatre
-        [HttpPost("AddTheatre")]
-        public IActionResult AddTheatre(TheatreModel theatreModel)
+        [HttpPost("AddNewTheatre")]
+        public IActionResult AddNewTheatre(TheatreModel theatreModel)
         {
             return Ok(_theatreService.AddTheatre(theatreModel));
         }

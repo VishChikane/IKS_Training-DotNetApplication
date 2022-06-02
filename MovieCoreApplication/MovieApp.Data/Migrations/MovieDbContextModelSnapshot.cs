@@ -18,6 +18,42 @@ namespace MovieApp.Data.Migrations
                 .HasAnnotation("ProductVersion", "5.0.17")
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+            modelBuilder.Entity("MovieApp.Entity.BookingModel", b =>
+                {
+                    b.Property<int>("BookingId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Date")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("MovieId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("ShowTime")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("TheatreId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("TicketCount")
+                        .HasColumnType("int");
+
+                    b.Property<int>("UserId")
+                        .HasColumnType("int");
+
+                    b.HasKey("BookingId");
+
+                    b.HasIndex("MovieId");
+
+                    b.HasIndex("TheatreId");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("bookingModel");
+                });
+
             modelBuilder.Entity("MovieApp.Entity.MovieModel", b =>
                 {
                     b.Property<int>("MovieId")
@@ -105,23 +141,54 @@ namespace MovieApp.Data.Migrations
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("Email")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("FirstName")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("LastName")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("Mobile")
                         .HasColumnType("int");
 
                     b.Property<string>("Password")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("UserId");
 
                     b.ToTable("userModel");
+                });
+
+            modelBuilder.Entity("MovieApp.Entity.BookingModel", b =>
+                {
+                    b.HasOne("MovieApp.Entity.MovieModel", "movieModel")
+                        .WithMany()
+                        .HasForeignKey("MovieId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("MovieApp.Entity.TheatreModel", "theatreModel")
+                        .WithMany()
+                        .HasForeignKey("TheatreId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("MovieApp.Entity.UserModel", "user")
+                        .WithMany()
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("movieModel");
+
+                    b.Navigation("theatreModel");
+
+                    b.Navigation("user");
                 });
 
             modelBuilder.Entity("MovieApp.Entity.MovieShowTime", b =>
