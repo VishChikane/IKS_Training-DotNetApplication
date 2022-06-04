@@ -98,8 +98,8 @@ namespace MovieApp.UI.Controllers
                     if (response.StatusCode == System.Net.HttpStatusCode.OK)
                     {
                         ViewBag.status = "OK";
-                        ViewBag.message = "User Register Succesfully ...!";
-                        // return RedirectToAction("Index", "Movies");
+                        ViewBag.message = "User Login Succesfully ...!";
+                        return RedirectToAction("Index", "Home");
                     }
                     else
                     {
